@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Columns</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="mb-4">Select Columns for Analysis</h1>
+        <form method="POST" class="card p-4">
+            <div class="mb-3">
+                <label>Module Column</label>
+                <select class="form-select" name="module_col" required>
+                    {% for col in columns %}
+                        <option value="{{ col }}">{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Mark Column</label>
+                <select class="form-select" name="mark_col" required>
+                    {% for col in columns %}
+                        <option value="{{ col }}">{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Demographic Columns (select multiple)</label><br>
+                {% for col in columns %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="demo_cols" value="{{ col }}">
+                        <label class="form-check-label">{{ col }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-success">Run Analysis</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+
+flask
+pandas
+matplotlib
+seaborn
+scipy
+statsmodels
+openpyxl

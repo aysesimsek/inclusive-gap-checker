@@ -1,0 +1,16 @@
+
+{% for module in grouped_results %}
+  <h2>{{ module.module }}</h2>
+  <p><strong>Total Comparisons:</strong> {{ module.summary.total }}</p>
+  <p><strong>Significant Gaps:</strong> {{ module.summary.significant }}</p>
+  <p><strong>Largest Gap:</strong> {{ module.summary.top_demo }} ({{ module.summary.group_a }} vs {{ module.summary.group_b }}) → Effect Size: {{ module.summary.effect_size }}</p>
+  
+  {% for demo in module.demographics %}
+    <h4>{{ demo.name }}</h4>
+    <div>{{ demo.table | safe }}</div>
+    <img src="{{ url_for('static', filename='plots/' + demo.violin_plot) }}" alt="Violin Plot" width="500">
+    <img src="{{ url_for('static', filename='plots/' + demo.swarm_plot) }}" alt="Swarm Plot" width="500">
+  {% endfor %}
+  <hr>
+{% endfor %}
+<p><a href="{{ url_for('download', filename=download_link) }}" class="btn btn-primary">Download Results CSV</a></p>
